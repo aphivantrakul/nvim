@@ -16,6 +16,8 @@ require('packer').startup(function(use)
 
   use 'aphivantrakul/nvcode-color-schemes.vim'
 
+  use 'ctrlpvim/ctrlp.vim'
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
