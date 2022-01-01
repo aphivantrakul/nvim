@@ -28,5 +28,3 @@ end)
 require('plugin_configs')
 
 require'colorizer'.setup()
-
-vim.cmd[[colorscheme iceberg]]

@@ -69,6 +69,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["ctrlp.vim"] = {
+    loaded = true,
+    path = "/home/aphivantrakul/.local/share/nvim/site/pack/packer/start/ctrlp.vim",
+    url = "https://github.com/ctrlpvim/ctrlp.vim"
+  },
   ["nvcode-color-schemes.vim"] = {
     loaded = true,
     path = "/home/aphivantrakul/.local/share/nvim/site/pack/packer/start/nvcode-color-schemes.vim",
