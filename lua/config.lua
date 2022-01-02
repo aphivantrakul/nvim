@@ -24,3 +24,4 @@ vim.o.title = true
 vim.g.mapleader = ' '
 vim.o.cursorline = true
 vim.o.cursorcolumn = true
+vim.cmd"let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']"
