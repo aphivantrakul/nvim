@@ -11,6 +11,11 @@ require('packer').startup(function()
   use 'aphivantrakul/nvcode-color-schemes.vim'
 
   use 'ctrlpvim/ctrlp.vim'
+
+  use {'junegunn/fzf', dir = '~/.fzf', run = './install --all' }
+	use {'junegunn/fzf.vim'}
+
+  use {'airblade/vim-rooter'}
 end)
 
 require('plugin_configs')

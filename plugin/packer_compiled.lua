@@ -74,6 +74,16 @@ _G.packer_plugins = {
     path = "/home/aphivantrakul/.local/share/nvim/site/pack/packer/start/ctrlp.vim",
     url = "https://github.com/ctrlpvim/ctrlp.vim"
   },
+  fzf = {
+    loaded = true,
+    path = "/home/aphivantrakul/.local/share/nvim/site/pack/packer/start/fzf",
+    url = "https://github.com/junegunn/fzf"
+  },
+  ["fzf.vim"] = {
+    loaded = true,
+    path = "/home/aphivantrakul/.local/share/nvim/site/pack/packer/start/fzf.vim",
+    url = "https://github.com/junegunn/fzf.vim"
+  },
   ["nvcode-color-schemes.vim"] = {
     loaded = true,
     path = "/home/aphivantrakul/.local/share/nvim/site/pack/packer/start/nvcode-color-schemes.vim",
@@ -93,6 +103,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/aphivantrakul/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
+  },
+  ["vim-rooter"] = {
+    loaded = true,
+    path = "/home/aphivantrakul/.local/share/nvim/site/pack/packer/start/vim-rooter",
+    url = "https://github.com/airblade/vim-rooter"
   }
 }
 
