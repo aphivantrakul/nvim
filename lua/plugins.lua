@@ -13,7 +13,7 @@ require('packer').startup(function()
   use 'ctrlpvim/ctrlp.vim'
 
   use {'junegunn/fzf', dir = '~/.fzf', run = './install --all' }
-	use {'junegunn/fzf.vim'}
+  use {'junegunn/fzf.vim'}
 
   use {'airblade/vim-rooter'}
 end)
