@@ -12,7 +12,6 @@ let g:netrw_fastbrowse = 0
 set t_Co=256 " use 256 colors on the terminal
 set cursorline " underline current line
 set cursorcolumn " underline current line
-hi CursorLine cterm=none ctermbg=253 ctermfg=none " highlight current line with grey background
 hi CursorColumn cterm=none ctermbg=254 ctermfg=none " highlight current line with grey background
 set ignorecase " case insensitive search
 set smartcase " case insensitive search
@@ -34,11 +33,6 @@ if &diff " when using vimdiff
 endif
 
 set linebreak
-
-" block cursor in normal mode, beam in insert mode (alacritty terminal)
-let &t_SI = "\<Esc>[6 q" " insert mode
-let &t_SR = "\<Esc>[4 q" " replace mode
-let &t_EI = "\<Esc>[0 q" " normal mode
 
 setlocal foldmethod=indent
 set expandtab
@@ -64,6 +58,11 @@ let mapleader=" "
 map <leader>f :Files!<CR>
 map <leader>r :Rg!<CR>
 
+map <c-h> <c-w>wh
+map <c-j> <c-w>wj
+map <c-k> <c-w>wk
+map <c-l> <c-w>wl
+
 let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
 
 lua <<EOF
@@ -88,7 +87,7 @@ endif
 hi Normal ctermbg=254 ctermfg=237 guibg=#e8e9ec guifg=#33374c
 hi ColorColumn cterm=NONE ctermbg=253 ctermfg=NONE guibg=#dcdfe7 guifg=NONE
 " hi CursorColumn cterm=NONE ctermbg=253 ctermfg=NONE guibg=#dcdfe7 guifg=NONE
-" hi CursorLine cterm=NONE ctermbg=253 ctermfg=NONE guibg=#dcdfe7 guifg=NONE
+hi CursorLine cterm=NONE ctermbg=253 ctermfg=NONE guibg=#dedede guifg=NONE
 hi Comment ctermfg=244 guifg=#8389a3
 hi Conceal ctermbg=254 ctermfg=244 guibg=#e8e9ec guifg=#8389a3
 hi Constant ctermfg=97 guifg=#7759b4
@@ -134,10 +133,10 @@ hi SpellCap ctermbg=117 ctermfg=237 gui=undercurl guifg=NONE guisp=#2d539e
 hi SpellLocal ctermbg=116 ctermfg=237 gui=undercurl guifg=NONE guisp=#3f83a6
 hi SpellRare ctermbg=110 ctermfg=237 gui=undercurl guifg=NONE guisp=#7759b4
 hi Statement ctermfg=25 gui=NONE guifg=#2d539e
-hi StatusLine cterm=reverse ctermbg=252 ctermfg=243 gui=reverse guibg=#e8e9ec guifg=#757ca3 term=reverse
-hi StatusLineTerm cterm=reverse ctermbg=252 ctermfg=243 gui=reverse guibg=#e8e9ec guifg=#757ca3 term=reverse
-hi StatusLineNC cterm=reverse ctermbg=244 ctermfg=251 gui=reverse guibg=#8b98b6 guifg=#cad0de
-hi StatusLineTermNC cterm=reverse ctermbg=244 ctermfg=251 gui=reverse guibg=#8b98b6 guifg=#cad0de
+hi StatusLine cterm=reverse ctermbg=252 ctermfg=243 gui=reverse guibg=#e8e9ec guifg=#c57339 term=reverse
+hi StatusLineTerm cterm=reverse ctermbg=252 ctermfg=243 gui=reverse guibg=#e8e9ec guifg=#c57339 term=reverse
+hi StatusLineNC cterm=reverse ctermbg=244 ctermfg=251 gui=reverse guibg=#33374c guifg=#e8e9ec
+hi StatusLineTermNC cterm=reverse ctermbg=244 ctermfg=251 gui=reverse guibg=#33374c guifg=#e8e9ec
 hi StorageClass ctermfg=25 guifg=#2d539e
 hi String ctermfg=31 guifg=#3f83a6
 hi Structure ctermfg=25 guifg=#2d539e
@@ -149,7 +148,7 @@ hi Title ctermfg=130 gui=NONE guifg=#c57339
 hi Todo ctermbg=254 ctermfg=64 guibg=#d4dbd1 guifg=#668e3d
 hi Type ctermfg=25 gui=NONE guifg=#2d539e
 hi Underlined cterm=underline ctermfg=25 gui=underline guifg=#2d539e term=underline
-hi VertSplit cterm=NONE ctermbg=251 ctermfg=251 gui=NONE guibg=#cad0de guifg=#cad0de
+hi VertSplit cterm=NONE ctermbg=251 ctermfg=251 gui=NONE guibg=#dedede guifg=#dedede
 hi Visual ctermbg=251 ctermfg=NONE guibg=#c9cdd7 guifg=NONE
 hi VisualNOS ctermbg=251 ctermfg=NONE guibg=#c9cdd7 guifg=NONE
 hi WildMenu ctermbg=235 ctermfg=252 guibg=#32364c guifg=#e8e9ec
