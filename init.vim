@@ -2,17 +2,13 @@ set nocompatible " don't use vi settings
 
 syntax enable " enable syntax and plugins (for netrw)
 filetype plugin on
-set number relativenumber " show relative and absolute line numbers
-autocmd InsertEnter * :set norelativenumber
-autocmd InsertLeave * :set number relativenumber
+set number
 set path=.,,,**
 set hidden " allow switch buffers without saving
 set shortmess-=S " count number of search matches
 let g:netrw_fastbrowse = 0
 set t_Co=256 " use 256 colors on the terminal
 set cursorline " underline current line
-set cursorcolumn " underline current line
-hi CursorColumn cterm=none ctermbg=254 ctermfg=none " highlight current line with grey background
 set ignorecase " case insensitive search
 set smartcase " case insensitive search
 set wildmenu " show tab options when searching
@@ -51,7 +47,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'airblade/vim-rooter'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'tpope/vim-commentary'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'preservim/nerdtree'
 call plug#end()
+
+let g:gitgutter_diff_base = 'HEAD'
 
 nnoremap <SPACE> <Nop>
 let mapleader=" "
@@ -62,6 +63,11 @@ map <c-h> <c-w>wh
 map <c-j> <c-w>wj
 map <c-k> <c-w>wk
 map <c-l> <c-w>wl
+map <leader>w :set wrap!<CR>
+map <leader>g :GitGutterToggle<CR>
+map <leader>c :set cursorcolumn!<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
+map <leader>n :set number!<CR>
 
 let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
 
@@ -86,7 +92,7 @@ endif
 
 hi Normal ctermbg=254 ctermfg=237 guibg=#e8e9ec guifg=#33374c
 hi ColorColumn cterm=NONE ctermbg=253 ctermfg=NONE guibg=#dcdfe7 guifg=NONE
-" hi CursorColumn cterm=NONE ctermbg=253 ctermfg=NONE guibg=#dcdfe7 guifg=NONE
+hi CursorColumn cterm=NONE ctermbg=253 ctermfg=NONE guibg=#dedede guifg=NONE
 hi CursorLine cterm=NONE ctermbg=253 ctermfg=NONE guibg=#dedede guifg=NONE
 hi Comment ctermfg=244 guifg=#8389a3
 hi Conceal ctermbg=254 ctermfg=244 guibg=#e8e9ec guifg=#8389a3
