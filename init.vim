@@ -2,13 +2,11 @@ set nocompatible " don't use vi settings
 
 syntax enable " enable syntax and plugins (for netrw)
 filetype plugin on
-set number
 set path=.,,,**
 set hidden " allow switch buffers without saving
 set shortmess-=S " count number of search matches
 let g:netrw_fastbrowse = 0
 set t_Co=256 " use 256 colors on the terminal
-set cursorline " underline current line
 set ignorecase " case insensitive search
 set smartcase " case insensitive search
 set wildmenu " show tab options when searching
@@ -35,6 +33,7 @@ set expandtab
 hi Visual cterm=none ctermbg=251 ctermfg=white
 set nofoldenable
 set title
+set updatetime=100
 
 nnoremap <SPACE> <Nop>
 let mapleader=" "
@@ -53,6 +52,7 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 let g:gitgutter_diff_base = 'HEAD'
+let g:gitgutter_enabled = 0
 
 nnoremap <SPACE> <Nop>
 let mapleader=" "
@@ -68,6 +68,7 @@ map <leader>g :GitGutterToggle<CR>
 map <leader>c :set cursorcolumn!<CR>
 nnoremap <leader>n :NERDTreeFocus<CR>
 map <leader>n :set number!<CR>
+map <leader>l :set cursorline!<CR>
 
 let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
 
