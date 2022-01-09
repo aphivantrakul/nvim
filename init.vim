@@ -1,5 +1,4 @@
 set nocompatible " don't use vi settings 
-
 syntax enable " enable syntax and plugins (for netrw)
 filetype plugin on
 set path=.,,,**
@@ -14,7 +13,6 @@ set wildignore+=*/node_modules/*,*/tmp/*,*/public/* " ignore these folders when 
 set wildmode=list:longest,full
 set clipboard=unnamed " copy from vim paste into system using * register
 set grepprg=rg\ --smart-case\ --vimgrep
-highlight Pmenu ctermbg=245 " change color of autocomplete box
 set tabstop=2 " 2 spaces for a tab
 set shiftwidth=2
 set softtabstop=2
@@ -27,7 +25,6 @@ if &diff " when using vimdiff
 endif
 
 set linebreak
-
 setlocal foldmethod=indent
 set expandtab
 hi Visual cterm=none ctermbg=251 ctermfg=white
@@ -35,10 +32,31 @@ set nofoldenable
 set title
 set updatetime=100
 
+" --------
+" Key Maps
+" --------
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 map <leader>p :CtrlP<CR>
 map <leader>b :CtrlPBuffer<CR>
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+map <leader>f :Files!<CR>
+map <leader>r :Rg!<CR>
+map <c-h> <c-w>wh
+map <c-j> <c-w>wj
+map <c-k> <c-w>wk
+map <c-l> <c-w>wl
+map <leader>w :set wrap!<CR>
+map <leader>g :GitGutterToggle<CR>
+map <leader>c :set cursorcolumn!<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
+map <leader>n :set number!<CR>
+map <leader>l :set cursorline!<CR>
+
+" -------
+" Plugins
+" -------
 
 call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -53,23 +71,6 @@ call plug#end()
 
 let g:gitgutter_diff_base = 'HEAD'
 let g:gitgutter_enabled = 0
-
-nnoremap <SPACE> <Nop>
-let mapleader=" "
-map <leader>f :Files!<CR>
-map <leader>r :Rg!<CR>
-
-map <c-h> <c-w>wh
-map <c-j> <c-w>wj
-map <c-k> <c-w>wk
-map <c-l> <c-w>wl
-map <leader>w :set wrap!<CR>
-map <leader>g :GitGutterToggle<CR>
-map <leader>c :set cursorcolumn!<CR>
-nnoremap <leader>t :NERDTreeToggle<CR>
-map <leader>n :set number!<CR>
-map <leader>l :set cursorline!<CR>
-
 let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
 
 lua <<EOF
@@ -85,6 +86,10 @@ lua <<EOF
   }
   require'colorizer'.setup()
 EOF
+
+" ----------------
+" Syntax Highlight
+" ----------------
 
 hi clear                                                                                                                                  
 if exists('syntax_on')                                                                                                                    
@@ -124,7 +129,7 @@ hi MatchParen ctermbg=250 ctermfg=0 guibg=#bec0c9 guifg=#33374c
 hi ModeMsg ctermfg=244 guifg=#8389a3
 hi MoreMsg ctermfg=64 guifg=#668e3d
 hi Operator ctermfg=25 guifg=#2d539e
-hi Pmenu ctermbg=251 ctermfg=237 guibg=#cad0de guifg=#33374c
+hi Pmenu ctermbg=245 ctermfg=237 guibg=#cad0de guifg=#33374c
 hi PmenuSbar ctermbg=251 ctermfg=NONE guibg=#cad0de guifg=NONE
 hi PmenuSel ctermbg=248 ctermfg=235 guibg=#a7b2cd guifg=#33374c
 hi PmenuThumb ctermbg=237 ctermfg=NONE guibg=#33374c guifg=NONE
