@@ -27,14 +27,37 @@ endif
 set linebreak
 setlocal foldmethod=indent
 set expandtab
-hi Visual cterm=none ctermbg=251 ctermfg=white
 set nofoldenable
 set title
 set updatetime=100
+set undofile
+set list
+set listchars=tab:▸\ ,trail:·
+set scrolloff=8
+set sidescrolloff=10
+set splitright
+set clipboard=unnamedplus
+
+" Reselect visual selection after indenting
+vnoremap < <gv
+vnoremap > >gv
+
+" Maintain the cursor position when yanking a visual selection
+" http://ddrscott.github.io/blog/2016/yank-without-jank/
+vnoremap y myy`y
+vnoremap Y myY`y
+
+" When text is wrapped, move by terminal rows, not lines, unless a count is provided
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" Quicky escape to normal mode
+imap jj <esc>
 
 " --------
 " Key Maps
 " --------
+
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 map <leader>p :CtrlP<CR>
@@ -57,6 +80,13 @@ map <leader>l :set cursorline!<CR>
 " -------
 " Plugins
 " -------
+
+" Automatically install vim-plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
