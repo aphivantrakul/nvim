@@ -66,7 +66,7 @@ map <c-l> <c-w>wl
 map <leader>w :set wrap!<CR>
 map <leader>g :GitGutterToggle<CR>
 map <leader>c :set cursorcolumn!<CR>
-nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
 map <leader>n :set number!<CR>
 map <leader>l :set cursorline!<CR>
 
@@ -94,7 +94,7 @@ endif
 hi Normal ctermbg=254 ctermfg=237 guibg=#e8e9ec guifg=#33374c
 hi ColorColumn cterm=NONE ctermbg=253 ctermfg=NONE guibg=#dcdfe7 guifg=NONE
 hi CursorColumn cterm=NONE ctermbg=253 ctermfg=NONE guibg=#dedede guifg=NONE
-hi CursorLine cterm=NONE ctermbg=253 ctermfg=NONE guibg=#dedede guifg=NONE
+hi CursorLine cterm=NONE ctermbg=253 ctermfg=NONE guibg=#cbcfda guifg=NONE
 hi Comment ctermfg=244 guifg=#8389a3
 hi Conceal ctermbg=254 ctermfg=244 guibg=#e8e9ec guifg=#8389a3
 hi Constant ctermfg=97 guifg=#7759b4
@@ -140,8 +140,8 @@ hi SpellCap ctermbg=117 ctermfg=237 gui=undercurl guifg=NONE guisp=#2d539e
 hi SpellLocal ctermbg=116 ctermfg=237 gui=undercurl guifg=NONE guisp=#3f83a6
 hi SpellRare ctermbg=110 ctermfg=237 gui=undercurl guifg=NONE guisp=#7759b4
 hi Statement ctermfg=25 gui=NONE guifg=#2d539e
-hi StatusLine cterm=reverse ctermbg=252 ctermfg=243 gui=reverse guibg=#e8e9ec guifg=#c57339 term=reverse
-hi StatusLineTerm cterm=reverse ctermbg=252 ctermfg=243 gui=reverse guibg=#e8e9ec guifg=#c57339 term=reverse
+hi StatusLine cterm=reverse ctermbg=252 ctermfg=243 gui=reverse guibg=#c57339 guifg=#eac6ad term=reverse
+hi StatusLineTerm cterm=reverse ctermbg=252 ctermfg=243 gui=reverse guibg=#c57339 guifg=#eac6ad term=reverse
 hi StatusLineNC cterm=reverse ctermbg=244 ctermfg=251 gui=reverse guibg=#33374c guifg=#e8e9ec
 hi StatusLineTermNC cterm=reverse ctermbg=244 ctermfg=251 gui=reverse guibg=#33374c guifg=#e8e9ec
 hi StorageClass ctermfg=25 guifg=#2d539e
