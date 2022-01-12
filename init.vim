@@ -57,7 +57,6 @@
     map <leader>w :set wrap!<CR>
     map <leader>g :GitGutterToggle<CR>
     map <leader>c :set cursorcolumn!<CR>
-    nnoremap <leader>t :NERDTreeToggle<CR>
     map <leader>n :set number!<CR>
     map <leader>l :set cursorline!<CR>
     " Reselect visual selection after indenting
@@ -72,6 +71,8 @@
         noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
     " Quicky escape to normal mode
         imap jj <esc>
+    nnoremap <expr> <leader>t g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : @% == '' ? ':NERDTree<CR>' : ':NERDTreeFind<CR>'
+    nmap <leader>T :NERDTreeFind<CR>
 " -------
 " Plugins
 " -------
@@ -105,6 +106,8 @@
     " ctrlp
         " show current file in buffer list
             let g:ctrlp_match_current_file = 1
+        " increase buffer list size
+            let g:ctrlp_match_window = 'min:1,max:999'
 " tree-sitter
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
