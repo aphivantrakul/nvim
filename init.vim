@@ -168,7 +168,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  -- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   buf_set_keymap('n', '<space>o', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 end
 
@@ -183,6 +183,7 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
 EOF
 " lsp diagnostics
 lua <<EOF
@@ -205,7 +206,7 @@ EOF
   hi Conceal ctermbg=254 ctermfg=244 guibg=#e8e9ec guifg=#8389a3
   hi Constant ctermfg=97 guifg=#7759b4
   hi Cursor ctermbg=237 ctermfg=254 guibg=#393d52 guifg=#e8e9ec
-  hi CursorLineNr cterm=NONE ctermbg=251 ctermfg=237 guibg=NONE guifg=#c57339 " changed
+  hi CursorLineNr cterm=NONE ctermbg=251 ctermfg=237 guibg=NONE guifg=#cc517a " changed
   hi Delimiter ctermfg=237 guifg=#393d52
   hi DiffAdd ctermbg=79 ctermfg=23 guibg=#d4dbd1 guifg=#475946
   hi DiffChange ctermbg=116 ctermfg=24 guibg=#ced9e1 guifg=#375570
@@ -225,7 +226,7 @@ EOF
   hi Ignore ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
   hi Include ctermfg=25 guifg=#2d539e
   hi IncSearch cterm=reverse ctermfg=NONE gui=reverse guifg=NONE term=reverse
-  hi LineNr ctermbg=253 ctermfg=248 guibg=NONE guifg=#c57339 " changed
+  hi LineNr ctermbg=253 ctermfg=248 guibg=NONE guifg=#cc517a " changed
   hi MatchParen ctermbg=250 ctermfg=0 guibg=#bec0c9 guifg=#393d52
   hi ModeMsg ctermfg=244 guifg=#8389a3
   hi MoreMsg ctermfg=64 guifg=#668e3d
@@ -309,7 +310,7 @@ EOF
   let g:terminal_color_15 = '#262a3f'
 
   "TS Settings"
-  hi TSComment ctermfg=244 guifg=#a0b897
+  hi TSComment ctermfg=244 guifg=#8389a3
   hi TSError guifg=#cc3768 ctermfg=167 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSPunctDelimiter guifg=#6845ad ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSPunctBracket guifg=#6845ad ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -321,7 +322,7 @@ EOF
   hi TSString guifg=#c57339 ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSStringEscape guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSCharacter guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSNumber guifg=#393d52 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSNumber guifg=#cc3768 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSBoolean guifg=#2d539e ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSFloat guifg=#668e3d ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSAnnotation guifg=#c57339 ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
