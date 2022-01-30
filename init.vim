@@ -55,7 +55,7 @@
   map <leader>g :GitGutterToggle<CR>
   map <leader>c :set cursorcolumn!<CR>
   map <leader>n :set number!<CR>
-  map <leader>l :set cursorline!<CR>
+  map <leader>L :set cursorline!<CR>
   " Reselect visual selection after indenting
     vnoremap < <gv
     vnoremap > >gv
@@ -66,13 +66,17 @@
   " When text is wrapped, move by terminal rows, not lines, unless a count is provided
     noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
     noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
-  " Quicky escape to normal mode
+  " Quickly escape to normal mode
     imap jj <esc>
   nnoremap <expr> <leader>t g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : @% == '' ? ':NERDTree<CR>' : ':NERDTreeFind<CR>'
   nmap <leader>T :NERDTreeFind<CR>
   map <leader>d :ToggleDiag<CR>
   map <leader>] <c-]>
   map <leader>[ <c-t>
+  map <leader>h :bp<CR>
+  map <leader>l :bn<CR>
+  map <leader>s :wa<CR>
+
 " -------
 " Plugins
 " -------
@@ -249,7 +253,7 @@ EOF
   hi Statement ctermfg=25 gui=NONE guifg=#2d539e
   hi StatusLine cterm=reverse ctermbg=252 ctermfg=243 gui=reverse guibg=#c57339 guifg=#eac6ad term=reverse
   hi StatusLineTerm cterm=reverse ctermbg=252 ctermfg=243 gui=reverse guibg=#c57339 guifg=#eac6ad term=reverse
-  hi StatusLineNC cterm=reverse ctermbg=244 ctermfg=251 gui=reverse guibg=#393d52 guifg=#e8e9ec
+  hi StatusLineNC cterm=reverse ctermbg=244 ctermfg=251 gui=reverse guibg=#393d52 guifg=#dedede
   hi StatusLineTermNC cterm=reverse ctermbg=244 ctermfg=251 gui=reverse guibg=#393d52 guifg=#e8e9ec
   hi StorageClass ctermfg=25 guifg=#2d539e
   hi String ctermfg=31 guifg=#3f83a6
@@ -262,7 +266,7 @@ EOF
   hi Todo ctermbg=254 ctermfg=64 guibg=#d4dbd1 guifg=#668e3d
   hi Type ctermfg=25 gui=NONE guifg=#2d539e
   hi Underlined cterm=underline ctermfg=25 gui=underline guifg=#2d539e term=underline
-  hi VertSplit cterm=NONE ctermbg=251 ctermfg=251 gui=NONE guibg=#dedede guifg=#dedede
+  hi VertSplit cterm=NONE ctermbg=251 ctermfg=251 gui=NONE guibg=#eac6ad guifg=#eac6ad
   hi Visual ctermbg=251 ctermfg=NONE guibg=#c9cdd7 guifg=NONE
   hi VisualNOS ctermbg=251 ctermfg=NONE guibg=#c9cdd7 guifg=NONE
   hi WildMenu ctermbg=235 ctermfg=252 guibg=#32364c guifg=#e8e9ec
@@ -392,3 +396,9 @@ EOF
   hi LspDiagnosticsUnderlineHint guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi LspDiagnosticsUnderlineInformation guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi LspDiagnosticsUnderlineWarning guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi LspReferenceText guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi LspReferenceRead guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi LspReferenceWrite guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi LspCodeLens guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi LspCodeLensSeparator guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi LspSignatureActiveParameter guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
