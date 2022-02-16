@@ -38,6 +38,7 @@
   set clipboard=unnamedplus
   set nowrap
   " set titlestring=%(\ %M%)%(\ %M%)%(\ %M%)%(\ %M%)%(\ %M%)%(_____\ %)%t%(\ _____(%{expand(\"%:~:h\")})%)%(\ %a%)
+  set startofline
 " --------
 " Key Maps
 " --------
@@ -51,11 +52,11 @@
   map <c-j> <c-w>wj
   map <c-k> <c-w>wk
   map <c-l> <c-w>wl
-  map <leader>w :set wrap!<CR>
+  map <leader>W :set wrap!<CR>
   map <leader>g :GitGutterToggle<CR>
   map <leader>c :set cursorcolumn!<CR>
   map <leader>n :set number!<CR>
-  map <leader>L :set cursorline!<CR>
+  map <leader>l :set cursorline!<CR>
   " Reselect visual selection after indenting
     vnoremap < <gv
     vnoremap > >gv
@@ -70,12 +71,15 @@
     imap jj <esc>
   nnoremap <expr> <leader>t g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : @% == '' ? ':NERDTree<CR>' : ':NERDTreeFind<CR>'
   nmap <leader>T :NERDTreeFind<CR>
-  map <leader>d :ToggleDiag<CR>
+  map <leader>D :ToggleDiag<CR>
   map <leader>] <c-]>
   map <leader>[ <c-t>
-  map <leader>h :bp<CR>
-  map <leader>l :bn<CR>
-  map <leader>s :wa<CR>
+  map <leader>, :bp<CR>
+  map <leader>. :bn<CR>
+  map <leader>w :wa<CR>
+  map <leader>q :q<CR>
+  map <leader>Q :qa<CR>
+  map <leader>d :bd<CR>
 
 " -------
 " Plugins
@@ -97,12 +101,12 @@
       Plug 'tpope/vim-commentary'
       Plug 'airblade/vim-gitgutter'
       Plug 'preservim/nerdtree'
-      Plug 'tpope/vim-endwise'
       Plug 'neovim/nvim-lspconfig'
       Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
     call plug#end()
   " git gutter
     let g:gitgutter_diff_base = 'HEAD'
+    " let g:gitgutter_diff_base = '11899a249673e292b9dee8dd8807b26be33006ff'
     let g:gitgutter_enabled = 0
     let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
   " fzf
@@ -110,6 +114,8 @@
       command! -bang -nargs=? -complete=dir Files call fzf#run(fzf#wrap('files', fzf#vim#with_preview({ 'dir': <q-args>, 'sink': 'e', 'source': 'rg --files --hidden' }), <bang>0))
     " Add an AllFiles variation that ignores .gitignore files
       command! -bang -nargs=? -complete=dir AllFiles call fzf#run(fzf#wrap('allfiles', fzf#vim#with_preview({ 'dir': <q-args>, 'sink': 'e', 'source': 'rg --files --hidden --no-ignore' }), <bang>0))
+    " Ignore matches in filenames when using Rg
+      command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
   " ctrlp
     " show current file in buffer list
       let g:ctrlp_match_current_file = 1
@@ -230,7 +236,7 @@ EOF
   hi Ignore ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
   hi Include ctermfg=25 guifg=#2d539e
   hi IncSearch cterm=reverse ctermfg=NONE gui=reverse guifg=NONE term=reverse
-  hi LineNr ctermbg=253 ctermfg=248 guibg=NONE guifg=#cc517a " changed
+  hi LineNr ctermbg=253 ctermfg=248 guibg=NONE guifg=#c57339 " changed
   hi MatchParen ctermbg=250 ctermfg=0 guibg=#bec0c9 guifg=#393d52
   hi ModeMsg ctermfg=244 guifg=#8389a3
   hi MoreMsg ctermfg=64 guifg=#668e3d
