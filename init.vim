@@ -39,6 +39,11 @@
   set nowrap
   " set titlestring=%(\ %M%)%(\ %M%)%(\ %M%)%(\ %M%)%(\ %M%)%(_____\ %)%t%(\ _____(%{expand(\"%:~:h\")})%)%(\ %a%)
   set startofline
+  " disable continuation of comment on next line when hit 'o'
+    set formatoptions-=cro
+  set foldmethod=indent
+  set nofoldenable
+
 " --------
 " Key Maps
 " --------
@@ -80,6 +85,10 @@
   map <leader>q :q<CR>
   map <leader>Q :qa<CR>
   map <leader>d :bd<CR>
+  nnoremap q: <nop>
+  nnoremap Q <nop>
+  map <leader>s :setlocal spell! spelllang=en_us<CR>
+  map <leader>1 :windo set wrap!<CR>
 
 " -------
 " Plugins
