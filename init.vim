@@ -76,19 +76,18 @@
     imap jj <esc>
   nnoremap <expr> <leader>t g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : @% == '' ? ':NERDTree<CR>' : ':NERDTreeFind<CR>'
   nmap <leader>T :NERDTreeFind<CR>
-  map <leader>D :ToggleDiag<CR>
-  map <leader>] <c-]>
-  map <leader>[ <c-t>
-  map <leader>, :bp<CR>
-  map <leader>. :bn<CR>
+  map <leader>d :ToggleDiag<CR>
+  map <leader>] :bp<CR>
+  map <leader>[ :bn<CR>
   map <leader>w :wa<CR>
   map <leader>q :q<CR>
   map <leader>Q :qa<CR>
-  map <leader>d :bd<CR>
   nnoremap q: <nop>
   nnoremap Q <nop>
   map <leader>s :setlocal spell! spelllang=en_us<CR>
   map <leader>1 :windo set wrap!<CR>
+  nmap <leader>} <Plug>(GitGutterNextHunk)
+  nmap <leader>{ <Plug>(GitGutterPrevHunk)
 
 " -------
 " Plugins
@@ -115,7 +114,7 @@
     call plug#end()
   " git gutter
     let g:gitgutter_diff_base = 'HEAD'
-    " let g:gitgutter_diff_base = '11899a249673e292b9dee8dd8807b26be33006ff'
+    let g:gitgutter_diff_base = 'f63a965181eb56bd9d459c9e8bd861bce0867633'
     let g:gitgutter_enabled = 0
     let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
   " fzf
