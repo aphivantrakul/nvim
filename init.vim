@@ -20,7 +20,17 @@
   set softtabstop=2
   set expandtab
   set termguicolors
-  set laststatus=1
+  set laststatus=2
+  set statusline=%t
+  set statusline+=%8*\ %=\ %l/%L\ (%00p%%)
+  function! ModifiedColor()
+    if getbufinfo('%')[0].changed
+      hi statusline guibg=White ctermfg=8 guifg=#cc517a ctermbg=15
+    else
+      hi statusline guibg=#c57339 ctermfg=243 guifg=#eac6ad ctermbg=252
+    endif
+  endfunction
+  au InsertLeave,InsertEnter,BufWritePost,FileChangedShell,TextChanged,TextChangedI,TextChangedP * call ModifiedColor()
   " turn syntax highlight off when using vimdiff
     if &diff
       syntax off
@@ -81,7 +91,7 @@
   map <leader>[ :bn<CR>
   map <leader>w :wa<CR>
   map <leader>q :q<CR>
-  map <leader>Q :qa<CR>
+  map <leader>Q :qa!<CR>
   nnoremap q: <nop>
   nnoremap Q <nop>
   map <leader>s :setlocal spell! spelllang=en_us<CR>
