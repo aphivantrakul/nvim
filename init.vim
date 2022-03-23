@@ -87,8 +87,10 @@
   nnoremap <expr> <leader>t g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : @% == '' ? ':NERDTree<CR>' : ':NERDTreeFind<CR>'
   nmap <leader>T :NERDTreeFind<CR>
   map <leader>d :ToggleDiag<CR>
-  map <leader>] :bp<CR>
-  map <leader>[ :bn<CR>
+  map <leader>] <c-]>
+  map <leader>[ <c-t>
+  map <leader>, :bp<CR>
+  map <leader>. :bn<CR>
   map <leader>w :wa<CR>
   map <leader>q :q<CR>
   map <leader>Q :qa!<CR>
