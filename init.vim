@@ -345,14 +345,14 @@ EOF
   hi TSPunctDelimiter guifg=#6845ad ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSPunctBracket guifg=#8389a3 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSPunctSpecial guifg=#6845ad ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSConstant guifg=#c57339 ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSConstant guifg=#cc517a ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConstBuiltin guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConstMacro guifg=#598030 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSStringRegex guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSString guifg=#c57339 ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSStringEscape guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSCharacter guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSNumber guifg=#cc3768 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSNumber guifg=#393d52 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSBoolean guifg=#7759b4 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSFloat guifg=#668e3d ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSAnnotation guifg=#c57339 ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -372,7 +372,7 @@ EOF
   hi TSLabel guifg=#393d52 ctermfg=243 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSKeyword guifg=#7759b4 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSKeywordFunction guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSKeywordOperator guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSKeywordOperator guifg=#7759b4 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSOperator guifg=#7759b4 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSException guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSType guifg=#668e3d ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
