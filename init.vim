@@ -202,7 +202,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'solargraph', 'denols' }
+local servers = { 'solargraph', 'denols', 'clangd' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -341,52 +341,52 @@ EOF
   hi TSComment ctermfg=244 guifg=#8389a3
   hi TSError guifg=#cc3768 ctermfg=167 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSPunctDelimiter guifg=#6845ad ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSPunctBracket guifg=#6845ad ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSPunctBracket guifg=#8389a3 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSPunctSpecial guifg=#6845ad ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConstant guifg=#c57339 ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSConstBuiltin guifg=#2d539e ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSConstBuiltin guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConstMacro guifg=#598030 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSStringRegex guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSString guifg=#c57339 ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSStringEscape guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSCharacter guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSNumber guifg=#cc3768 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSBoolean guifg=#2d539e ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSBoolean guifg=#7759b4 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSFloat guifg=#668e3d ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSAnnotation guifg=#c57339 ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSAttribute guifg=#598030 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSNamespace guifg=#598030 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSFuncBuiltin guifg=#c57339 ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSFunction ctermfg=237 guifg=#3f83a6
+  hi TSFunction ctermfg=237 guifg=#2d539e
   hi TSFuncMacro guifg=#c57339 ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSParameter guifg=#393d52 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSParameterReference guifg=#2d539e ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSMethod ctermfg=237 guifg=#3f83a6
-  hi TSField guifg=#2d539e ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSProperty guifg=#2d539e ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSConstructor guifg=#598030 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSParameterReference guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSMethod ctermfg=237 guifg=#2d539e
+  hi TSField guifg=#393d52 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSProperty guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSConstructor guifg=#2d539e ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConditional guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSRepeat guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSLabel guifg=#393d52 ctermfg=243 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSKeyword guifg=#7759b4 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSKeywordFunction guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSKeywordOperator guifg=#2d539e ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSKeywordOperator guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSOperator guifg=#7759b4 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSException guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSType guifg=#668e3d ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSTypeBuiltin guifg=#2d539e ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSTypeBuiltin guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSStructure guifg=#ff00ff ctermfg=201 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSInclude guifg=#6845ad ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSVariable guifg=#393d52 ctermfg=243 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSVariableBuiltin guifg=#2d539e ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSVariableBuiltin guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSText guifg=#ffff00 ctermfg=226 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSStrong guifg=#ffff00 ctermfg=226 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSEmphasis guifg=#ffff00 ctermfg=226 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSUnderline guifg=#ffff00 ctermfg=226 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSTitle guifg=#ffff00 ctermfg=226 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSLiteral guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSURI cterm=underline ctermfg=31 gui=underline guifg=#3f83a6 term=underline
-  hi TSTag guifg=#2d539e ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSURI cterm=underline ctermfg=31 gui=underline guifg=#2d539e term=underline
+  hi TSTag guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSTagDelimiter guifg=#6845ad ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSQueryLinterError guifg=#ff8800 ctermfg=208 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSSymbol guifg=#cc517a ctermfg=168 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
