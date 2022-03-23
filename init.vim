@@ -363,7 +363,7 @@ EOF
   hi TSParameterReference guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSMethod ctermfg=237 guifg=#2d539e
   hi TSField guifg=#393d52 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSProperty guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSProperty guifg=#393d52 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConstructor guifg=#2d539e ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConditional guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSRepeat guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
