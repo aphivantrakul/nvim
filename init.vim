@@ -164,6 +164,9 @@ EOF
 " lua << EOF
 "   require'lspconfig'.solargraph.setup{}
 " EOF
+lua <<EOF
+  require'lspconfig'.eslint.setup{}
+EOF
 
 " lspconfig
 lua << EOF
@@ -242,7 +245,7 @@ EOF
   hi DiffChange ctermbg=116 ctermfg=24 guibg=#ced9e1 guifg=#375570
   hi DiffDelete cterm=NONE ctermbg=181 ctermfg=89 gui=NONE guibg=#e3d2da guifg=#70415e
   hi DiffText cterm=NONE ctermbg=73 ctermfg=24 gui=NONE guibg=#acc5d3 guifg=#393d52
-  hi Directory ctermfg=31 guifg=#3f83a6
+  hi Directory ctermfg=31 guifg=#327698
   hi Error ctermbg=254 ctermfg=125 guibg=#e8e9ec guifg=#cc517a
   hi ErrorMsg ctermbg=254 ctermfg=125 guibg=#e8e9ec guifg=#cc517a
   hi WarningMsg ctermbg=254 ctermfg=125 guibg=#e8e9ec guifg=#cc517a
@@ -252,7 +255,7 @@ EOF
   hi Folded ctermbg=253 ctermfg=243 guibg=#dcdfe7 guifg=#788098
   hi FoldColumn ctermbg=253 ctermfg=248 guibg=#dcdfe7 guifg=#9fa7bd
   hi Function ctermfg=25 guifg=#2d539e
-  hi Identifier cterm=NONE ctermfg=31 guifg=#3f83a6
+  hi Identifier cterm=NONE ctermfg=31 guifg=#327698
   hi Ignore ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
   hi Include ctermfg=25 guifg=#2d539e
   hi IncSearch cterm=reverse ctermfg=NONE gui=reverse guifg=NONE term=reverse
@@ -274,7 +277,7 @@ EOF
   hi SpecialKey ctermfg=248 guifg=#a5b0d3
   hi SpellBad ctermbg=181 ctermfg=237 gui=undercurl guifg=NONE guisp=#cc517a
   hi SpellCap ctermbg=117 ctermfg=237 gui=undercurl guifg=NONE guisp=#2d539e
-  hi SpellLocal ctermbg=116 ctermfg=237 gui=undercurl guifg=NONE guisp=#3f83a6
+  hi SpellLocal ctermbg=116 ctermfg=237 gui=undercurl guifg=NONE guisp=#327698
   hi SpellRare ctermbg=110 ctermfg=237 gui=undercurl guifg=NONE guisp=#7759b4
   hi Statement ctermfg=25 gui=NONE guifg=#2d539e
   hi StatusLine cterm=reverse ctermbg=252 ctermfg=243 gui=reverse guibg=#c57339 guifg=#eac6ad term=reverse
@@ -282,7 +285,7 @@ EOF
   hi StatusLineNC cterm=reverse ctermbg=244 ctermfg=251 gui=reverse guibg=#393d52 guifg=#dedede
   hi StatusLineTermNC cterm=reverse ctermbg=244 ctermfg=251 gui=reverse guibg=#393d52 guifg=#e8e9ec
   hi StorageClass ctermfg=25 guifg=#2d539e
-  hi String ctermfg=31 guifg=#3f83a6
+  hi String ctermfg=31 guifg=#327698
   hi Structure ctermfg=25 guifg=#2d539e
   hi TabLine cterm=NONE ctermbg=251 ctermfg=244 gui=NONE guibg=#cad0de guifg=#8b98b6
   hi TabLineFill cterm=reverse ctermbg=244 ctermfg=251 gui=reverse guibg=#8b98b6 guifg=#cad0de
@@ -309,8 +312,8 @@ EOF
   hi EasyMotionTarget2First ctermfg=130 guifg=#c57339
   hi EasyMotionTarget2Second ctermfg=130 guifg=#c57339
   hi GitGutterAdd ctermbg=253 ctermfg=64 guibg=#dcdfe7 guifg=#668e3d
-  hi GitGutterChange ctermbg=253 ctermfg=31 guibg=#dcdfe7 guifg=#3f83a6
-  hi GitGutterChangeDelete ctermbg=253 ctermfg=31 guibg=#dcdfe7 guifg=#3f83a6
+  hi GitGutterChange ctermbg=253 ctermfg=31 guibg=#dcdfe7 guifg=#327698
+  hi GitGutterChangeDelete ctermbg=253 ctermfg=31 guibg=#dcdfe7 guifg=#327698
   hi GitGutterDelete ctermbg=253 ctermfg=125 guibg=#dcdfe7 guifg=#cc517a
   hi gitmessengerEndOfBuffer ctermbg=253 ctermfg=248 guibg=#dcdfe7 guifg=#9fa7bd
   hi gitmessengerPopupNormal ctermbg=253 ctermfg=237 guibg=#dcdfe7 guifg=#393d52
@@ -328,7 +331,7 @@ EOF
   let g:terminal_color_3 = '#c57339'
   let g:terminal_color_4 = '#2d539e'
   let g:terminal_color_5 = '#7759b4'
-  let g:terminal_color_6 = '#3f83a6'
+  let g:terminal_color_6 = '#ffffff'
   let g:terminal_color_7 = '#393d52'
   let g:terminal_color_8 = '#8389a3'
   let g:terminal_color_9 = '#cc3768'
@@ -342,11 +345,11 @@ EOF
   "TS Settings"
   hi TSComment ctermfg=244 guifg=#8389a3
   hi TSError guifg=#cc3768 ctermfg=167 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSPunctDelimiter guifg=#6845ad ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSPunctDelimiter guifg=#8389a3 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSPunctBracket guifg=#8389a3 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSPunctSpecial guifg=#6845ad ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSPunctSpecial guifg=#8389a3 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConstant guifg=#cc517a ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSConstBuiltin guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSConstBuiltin guifg=#327698 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConstMacro guifg=#598030 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSStringRegex guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSString guifg=#c57339 ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -359,14 +362,14 @@ EOF
   hi TSAttribute guifg=#598030 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSNamespace guifg=#598030 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSFuncBuiltin guifg=#c57339 ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSFunction ctermfg=237 guifg=#2d539e
+  hi TSFunction ctermfg=237 guifg=#327698
   hi TSFuncMacro guifg=#c57339 ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSParameter guifg=#393d52 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSParameterReference guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSMethod ctermfg=237 guifg=#2d539e
+  hi TSParameterReference guifg=#327698 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSMethod ctermfg=237 guifg=#327698
   hi TSField guifg=#393d52 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSProperty guifg=#393d52 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSConstructor guifg=#2d539e ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSConstructor guifg=#668e3d ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConditional guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSRepeat guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSLabel guifg=#393d52 ctermfg=243 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -376,11 +379,11 @@ EOF
   hi TSOperator guifg=#7759b4 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSException guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSType guifg=#668e3d ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSTypeBuiltin guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSTypeBuiltin guifg=#327698 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSStructure guifg=#ff00ff ctermfg=201 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSInclude guifg=#6845ad ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSInclude guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSVariable guifg=#393d52 ctermfg=243 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSVariableBuiltin guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSVariableBuiltin guifg=#327698 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSText guifg=#ffff00 ctermfg=226 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSStrong guifg=#ffff00 ctermfg=226 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSEmphasis guifg=#ffff00 ctermfg=226 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -388,8 +391,8 @@ EOF
   hi TSTitle guifg=#ffff00 ctermfg=226 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSLiteral guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSURI cterm=underline ctermfg=31 gui=underline guifg=#2d539e term=underline
-  hi TSTag guifg=#3f83a6 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSTagDelimiter guifg=#6845ad ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSTag guifg=#7759b4 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSTagDelimiter guifg=#8389a3 ctermfg=237 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSQueryLinterError guifg=#ff8800 ctermfg=208 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSSymbol guifg=#cc517a ctermfg=168 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSFunctionBuiltin ctermfg=237 guifg=#505695
@@ -397,7 +400,7 @@ EOF
 
   hi htmlArg guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi htmlBold guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=bold cterm=bold
-  hi htmlEndTag guifg=#3f83a6 ctermfg=67 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi htmlEndTag guifg=#2d539e ctermfg=67 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi htmlH1 guifg=#262a3f ctermfg=236 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi htmlH2 guifg=#262a3f ctermfg=236 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi htmlH3 guifg=#262a3f ctermfg=236 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -405,10 +408,10 @@ EOF
   hi htmlH5 guifg=#262a3f ctermfg=236 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi htmlH6 guifg=#262a3f ctermfg=236 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi htmlItalic guifg=#6845ad ctermfg=61 guibg=NONE ctermbg=NONE gui=italic cterm=italic
-  hi htmlLink guifg=#3f83a6 ctermfg=67 guibg=NONE ctermbg=NONE gui=underline cterm=underline
+  hi htmlLink guifg=#2d539e ctermfg=67 guibg=NONE ctermbg=NONE gui=underline cterm=underline
   hi htmlSpecialChar guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi htmlSpecialTagName guifg=#c57339 ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi htmlTag guifg=#3f83a6 ctermfg=67 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi htmlTag guifg=#2d539e ctermfg=67 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi htmlTagN guifg=#2d539e ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi htmlTagName guifg=#c57339 ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi htmlTitle guifg=#c57339 ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
