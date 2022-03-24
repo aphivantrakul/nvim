@@ -21,16 +21,14 @@
   set expandtab
   set termguicolors
   set laststatus=2
-  set statusline=%t
-  set statusline+=%8*\ %=\ %l/%L\ (%00p%%)
-  function! ModifiedColor()
-    if getbufinfo('%')[0].changed
-      hi statusline guibg=White ctermfg=8 guifg=#cc517a ctermbg=15
-    else
-      hi statusline guibg=#c57339 ctermfg=243 guifg=#eac6ad ctermbg=252
-    endif
-  endfunction
-  au InsertLeave,InsertEnter,BufWritePost,FileChangedShell,TextChanged,TextChangedI,TextChangedP * call ModifiedColor()
+  set statusline=%m%t
+  set statusline+=%=\ 
+  set statusline+=%l/%L\ [\ %00p%%\ ]
+  " set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+  " set statusline=%t
+  " set statusline+=%8*\ %=\ %l/%L\ (%00p%%)
+  au FocusLost * silent! wa
+
   " turn syntax highlight off when using vimdiff
     if &diff
       syntax off
@@ -369,7 +367,7 @@ EOF
   hi TSMethod ctermfg=237 guifg=#327698
   hi TSField guifg=#393d52 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSProperty guifg=#393d52 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSConstructor guifg=#668e3d ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSConstructor guifg=#327698 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConditional guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSRepeat guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSLabel guifg=#393d52 ctermfg=243 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
