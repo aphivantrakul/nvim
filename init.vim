@@ -22,7 +22,9 @@
   set termguicolors
   set laststatus=2
   set statusline=%m%t
-  set statusline+=%=\ 
+  set statusline+=%=
+  set statusline+=%F
+  set statusline+=%=
   set statusline+=%l/%L\ [\ %00p%%\ ]
   " set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
   " set statusline=%t
@@ -40,7 +42,7 @@
   set undofile
   set list
   set listchars=tab:▸\ ,trail:·
-  set scrolloff=8
+  set scrolloff=4
   set sidescrolloff=30
   set splitright
   set clipboard=unnamedplus
@@ -51,6 +53,10 @@
     set formatoptions-=cro
   set foldmethod=indent
   set nofoldenable
+  set autoindent
+  set number
+  " Use ripgrep for vim grep
+    set grepprg=rg\ --color=never
 
 " --------
 " Key Maps
@@ -61,12 +67,23 @@
   map <leader>b :CtrlPBuffer<CR>
   map <leader>f :Files!<CR>
   map <leader>r :Rg!<CR>
+  noremap <leader>a :Arg 
+  noremap <leader>s :Srg 
+  map <leader>h :History<CR>
   map <c-h> <c-w>wh
   map <c-j> <c-w>wj
   map <c-k> <c-w>wk
   map <c-l> <c-w>wl
+  map <c-Left> <c-w>wh
+  map <c-Down> <c-w>wj
+  map <c-Up> <c-w>wk
+  map <c-Right> <c-w>wl
+  map <leader><Left> <c-w>wh
+  map <leader><Down> <c-w>wj
+  map <leader><Up> <c-w>wk
+  map <leader><Right> <c-w>wl
   map <leader>W :set wrap!<CR>
-  map <leader>g :GitGutterToggle<CR>
+  " map <leader>g :GitGutterToggle<CR>
   map <leader>c :set cursorcolumn!<CR>
   map <leader>n :set number!<CR>
   map <leader>l :set cursorline!<CR>
@@ -84,7 +101,6 @@
     imap jj <esc>
   nnoremap <expr> <leader>t g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : @% == '' ? ':NERDTree<CR>' : ':NERDTreeFind<CR>'
   nmap <leader>T :NERDTreeFind<CR>
-  map <leader>d :ToggleDiag<CR>
   map <leader>] <c-]>
   map <leader>[ <c-t>
   map <leader>, :bp<CR>
@@ -92,12 +108,40 @@
   map <leader>w :wa<CR>
   map <leader>q :q<CR>
   map <leader>Q :qa!<CR>
-  nnoremap q: <nop>
-  nnoremap Q <nop>
-  map <leader>s :setlocal spell! spelllang=en_us<CR>
   map <leader>1 :windo set wrap!<CR>
   nmap <leader>} <Plug>(GitGutterNextHunk)
   nmap <leader>{ <Plug>(GitGutterPrevHunk)
+  nnoremap <leader>x :execute "set colorcolumn=" . (&colorcolumn == "" ? "100" : "")<CR>
+  map <leader>c : close<CR>
+  noremap <leader>R :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+  map <leader>B :Git blame<CR>
+  " search for word without jumping to the next instance of the word
+    nnoremap * :keepjumps normal! mi*`i<CR>
+  " clear the last searched term by hitting return
+    nnoremap <silent> <CR> :noh<CR><CR>
+  " toggle diff
+    let s:diff_on = 0
+    function! ToggleDiff()
+        if s:diff_on
+            windo diffoff!
+            let s:diff_on = 0
+        else
+            windo diffthis
+            let s:diff_on = 1
+        endif
+    endfunction
+    nnoremap <leader>d :call ToggleDiff()<CR>
+  " make sure that deleting with d does not clobber system registers
+    nnoremap y "+y
+    nnoremap Y "+Y
+    nnoremap p "+p
+    nnoremap P "+P
+    nnoremap x "_x
+    vnoremap y "+y
+    vnoremap Y "+Y
+    vnoremap p "+p
+    vnoremap P "+P
+    vnoremap x "_x
 
 " -------
 " Plugins
@@ -117,32 +161,46 @@
       Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
       Plug 'norcalli/nvim-colorizer.lua'
       Plug 'tpope/vim-commentary'
-      Plug 'airblade/vim-gitgutter'
+      " Plug 'airblade/vim-gitgutter'
       Plug 'preservim/nerdtree'
       Plug 'neovim/nvim-lspconfig'
       Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
+      Plug 'nathanaelkane/vim-indent-guides'
+      Plug 'tpope/vim-fugitive'
     call plug#end()
   " git gutter
-    let g:gitgutter_diff_base = 'HEAD'
-    let g:gitgutter_diff_base = 'f63a965181eb56bd9d459c9e8bd861bce0867633'
-    let g:gitgutter_enabled = 0
-    let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
+    " let g:gitgutter_diff_base = 'HEAD'
+    " let g:gitgutter_diff_base = 'f63a965181eb56bd9d459c9e8bd861bce0867633'
+    " let g:gitgutter_enabled = 0
   " fzf
+    let g:fzf_layout = { 'up': '100%' }
+    let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-e']
     " Customise the Files command to use rg which respects .gitignore files
       command! -bang -nargs=? -complete=dir Files call fzf#run(fzf#wrap('files', fzf#vim#with_preview({ 'dir': <q-args>, 'sink': 'e', 'source': 'rg --files --hidden' }), <bang>0))
     " Add an AllFiles variation that ignores .gitignore files
       command! -bang -nargs=? -complete=dir AllFiles call fzf#run(fzf#wrap('allfiles', fzf#vim#with_preview({ 'dir': <q-args>, 'sink': 'e', 'source': 'rg --files --hidden --no-ignore' }), <bang>0))
     " Ignore matches in filenames when using Rg
       command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
+
+    " I borrowed this from Jesse Youngman
+    " Change how Rg works, so we can pass args in!
+    " dropped -- and shellescape to pass all quoted args along, who knows if this
+    " will break things? have to use quotes around special regex chars
+    " and add file completion for dir arg
+      command! -bang -nargs=+ -complete=file Arg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".<q-args>, 1, fzf#vim#with_preview(), <bang>0)
+
+    " I borrowed this from Jesse Youngman
+    " Add slower, consistently sorted version for consistent ordering the next time you run the same search
+      command! -bang -nargs=+ -complete=file Srg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --sort=path ".<q-args>, 1, fzf#vim#with_preview(), <bang>0)
   " ctrlp
     " show current file in buffer list
       let g:ctrlp_match_current_file = 1
     " increase buffer list size
       let g:ctrlp_match_window = 'min:1,max:999'
+
 " tree-sitter
 lua <<EOF
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained",
     sync_install = false,
     ignore_install = {},
     highlight = {
@@ -155,15 +213,10 @@ lua <<EOF
     }
   }
 EOF
+
 " colorizer
 lua <<EOF
   require'colorizer'.setup()
-EOF
-" lua << EOF
-"   require'lspconfig'.solargraph.setup{}
-" EOF
-lua <<EOF
-  require'lspconfig'.eslint.setup{}
 EOF
 
 " lspconfig
@@ -183,29 +236,29 @@ local on_attach = function(client, bufnr)
   local opts = { noremap=true, silent=true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  -- buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  -- buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  -- buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  -- buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  -- buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  -- buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  -- buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  -- buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  -- buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  -- buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  -- buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   -- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-  buf_set_keymap('n', '<space>o', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  -- buf_set_keymap('n', '<space>o', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'solargraph', 'denols', 'clangd' }
+local servers = { 'clangd' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -220,6 +273,10 @@ EOF
 lua <<EOF
   require'toggle_lsp_diagnostics'.init({ start_on = false })
 EOF
+
+" vim-indent-guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
 
 " -------------------
 " Syntax Highlighting
@@ -343,9 +400,9 @@ EOF
   "TS Settings"
   hi TSComment ctermfg=244 guifg=#8389a3
   hi TSError guifg=#cc3768 ctermfg=167 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSPunctDelimiter guifg=#8389a3 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSPunctBracket guifg=#8389a3 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSPunctSpecial guifg=#8389a3 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSPunctDelimiter guifg=#7759b4 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSPunctBracket guifg=#7759b4 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSPunctSpecial guifg=#7759b4 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConstant guifg=#cc517a ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConstBuiltin guifg=#327698 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConstMacro guifg=#598030 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -353,7 +410,7 @@ EOF
   hi TSString guifg=#c57339 ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSStringEscape guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSCharacter guifg=#b6662d ctermfg=130 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSNumber guifg=#393d52 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSNumber guifg=#c57339 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSBoolean guifg=#7759b4 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSFloat guifg=#668e3d ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSAnnotation guifg=#c57339 ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -362,15 +419,15 @@ EOF
   hi TSFuncBuiltin guifg=#c57339 ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSFunction ctermfg=237 guifg=#327698
   hi TSFuncMacro guifg=#c57339 ctermfg=173 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSParameter guifg=#393d52 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSParameter guifg=#2d539e ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSParameterReference guifg=#327698 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSMethod ctermfg=237 guifg=#327698
-  hi TSField guifg=#393d52 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSProperty guifg=#393d52 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSField guifg=#2d539e ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSProperty guifg=#2d539e ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConstructor guifg=#327698 ctermfg=65 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSConditional guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSRepeat guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSLabel guifg=#393d52 ctermfg=243 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSLabel guifg=#2d539e ctermfg=243 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSKeyword guifg=#7759b4 ctermfg=97 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSKeywordFunction guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSKeywordOperator guifg=#7759b4 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -380,7 +437,7 @@ EOF
   hi TSTypeBuiltin guifg=#327698 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSStructure guifg=#ff00ff ctermfg=201 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSInclude guifg=#7759b4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  hi TSVariable guifg=#393d52 ctermfg=243 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+  hi TSVariable guifg=#2d539e ctermfg=243 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSVariableBuiltin guifg=#327698 ctermfg=25 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSText guifg=#ffff00 ctermfg=226 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   hi TSStrong guifg=#ffff00 ctermfg=226 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
